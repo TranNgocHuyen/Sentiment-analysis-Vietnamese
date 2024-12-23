@@ -3,18 +3,20 @@
 wonrax/phobert-base-vietnamese-sentiment
 một mô hình học sâu sử dụng PhoBERT (phiên bản tiếng Việt của RoBERTa), 
 được fine-tune cho bài toán phân loại cảm xúc (sentiment analysis)
+
 =====================
-Dataset: [30K e-commerce reviews](https://www.kaggle.com/datasets/linhlpv/vietnamese-sentiment-analyst)
+**Dataset:** [30K e-commerce reviews](https://www.kaggle.com/datasets/linhlpv/vietnamese-sentiment-analyst)
 gồm các câu được đánh nhãn với 3 label. 
+
 =====================
-Cách train: 
+**Cách train: **
 đầu vào : câu text => qua model => output: xác suất dự đoán 3 nhãn
 tính loss với nhãn đúng trong dataset bằng CrossEntropyLoss()
 => tối ưu model , cập nhật lại tham số model
 
 =====================
 
-Kiến trúc mô hình: (cơ bản vẫn là kiến trúc transformers)
+**Kiến trúc mô hình:** (cơ bản vẫn là kiến trúc transformers)
 
 RobertaForSequenceClassification(
   (roberta): RobertaModel(
@@ -61,9 +63,10 @@ RobertaForSequenceClassification(
     (dropout): Dropout(p=0.1, inplace=False)
     (out_proj): Linear(in_features=768, out_features=3, bias=True)
   )
+  
 =====================
 
-Phân tích kiến trúc:
+**Phân tích kiến trúc:**
 1. mô hình nền tảng (RobertaModel):
 
 - Embeddings Layer
@@ -106,6 +109,6 @@ Từ đó, mô hình sẽ đưa ra dự đoán cho một trong ba lớp: tích c
 
 =====================
 
-Cách đánh giá %:
+**Cách đánh giá %:**
 với đầu ra là mảng 3 chiều, cho qua hàm softmax thì sẽ cho xác suất/ tỉ lệ tương ứng với các label
 => lấy ra giá trị và index của label có xác suất cao nhất
